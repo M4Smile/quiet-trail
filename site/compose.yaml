@@ -1,0 +1,35 @@
+services:
+  game:
+    image: trail-game:local
+    build:
+      context: .
+    environment:
+      APP_MODE: game
+      ANALYTICS_DATA_PATH: /data/global-analytics.json
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+    ports:
+      - '3000:3000'
+    volumes:
+      - analytics-data:/data
+    restart: unless-stopped
+
+  analytics:
+    image: trail-game:local
+    depends_on:
+      - game
+    environment:
+      APP_MODE: analytics
+      ANALYTICS_DATA_PATH: /data/global-analytics.json
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+    ports:
+      - '127.0.0.1:4000:3000'
+    volumes:
+      - analytics-data:/data
+    restart: unless-stopped
+
+volumes:
+  analytics-data:

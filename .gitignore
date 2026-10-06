@@ -1,0 +1,53 @@
+# Local public export
+/public-release/
+/scripts/
+/tmp/
+
+# Internal source assets (runtime copies live in site/public/game)
+/backgrounds/
+/black-white/
+/cards/
+/elements/
+/masks/
+/Music_animation/
+/walk_animations/
+/свеча/
+/Статичные PNG/
+
+# Dependencies and build output
+**/node_modules/
+/.pnpm-store/
+**/.next/
+**/.vinext/
+**/dist/
+**/out/
+**/coverage/
+**/.wrangler/
+**/outputs/
+**/work/
+
+# Environment and credentials
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+
+# Runtime data
+**/data/
+*.log
+*.tmp
+__pycache__/
+*.py[cod]
+
+# Local deployment metadata
+**/.openai/hosting.json
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

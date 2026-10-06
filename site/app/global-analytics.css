@@ -1,0 +1,330 @@
+.group-page {
+  min-height: 100svh;
+  padding: clamp(1rem, 3vw, 2.6rem);
+  color: #3b2d23;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(98 132 124 / 38%), transparent 32rem),
+    linear-gradient(160deg, #183237, #0d2027 72%);
+}
+
+.group-dashboard {
+  width: min(78rem, 100%);
+  margin: auto;
+}
+
+.group-header,
+.group-sheet,
+.group-overview,
+.group-recommendations,
+.group-stats,
+.group-empty,
+.group-notice {
+  border: 1px solid rgb(116 82 47 / 46%);
+  background:
+    linear-gradient(rgb(255 248 227 / 86%), rgb(225 198 148 / 84%)),
+    url('/game/card-paper.webp') center / 34rem;
+  box-shadow:
+    0 1rem 2.5rem rgb(4 12 14 / 28%),
+    inset 0 0 0 2px rgb(255 245 218 / 35%);
+}
+
+.group-header {
+  display: flex;
+  border-radius: 1.2rem;
+  padding: clamp(1.1rem, 3vw, 2rem);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.group-header p,
+.group-overview > p,
+.group-sheet header p,
+.group-recommendations p {
+  margin: 0;
+  color: #875536;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.group-header h1 {
+  margin: 0.18rem 0 0.25rem;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 0.98;
+}
+
+.group-header span {
+  color: #665346;
+}
+
+.group-header button {
+  flex: none;
+  min-height: 2.8rem;
+  border: 1px solid rgb(82 57 37 / 38%);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  color: #493529;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  background: rgb(255 247 225 / 66%);
+  cursor: pointer;
+}
+
+.group-header button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.group-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  margin-top: 0.8rem;
+  border-radius: 0.9rem;
+  padding: 0.8rem 1rem;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.group-stats article {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.group-stats strong {
+  color: #6f4930;
+  font-size: 1.55rem;
+}
+
+.group-stats span,
+.group-stats p {
+  margin: 0;
+  color: #6d5a49;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.76rem;
+}
+
+.group-overview {
+  margin-top: 0.8rem;
+  border-radius: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.group-overview h2 {
+  margin: 0.25rem 0 0.45rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.group-overview div {
+  max-width: 65rem;
+  font-size: 1.03rem;
+  line-height: 1.5;
+}
+
+.group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0.8rem;
+  gap: 0.8rem;
+}
+
+.group-sheet {
+  border-radius: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+}
+
+.group-sheet header {
+  border-bottom: 1px solid rgb(102 72 42 / 20%);
+  padding-bottom: 0.65rem;
+}
+
+.group-sheet h2,
+.group-recommendations h2 {
+  margin: 0.18rem 0 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+}
+
+.group-score-list {
+  display: grid;
+  margin-top: 0.9rem;
+  gap: 0.7rem;
+}
+
+.group-score > div {
+  display: flex;
+  margin-bottom: 0.28rem;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+}
+
+.group-score i {
+  display: block;
+  height: 0.52rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(87 69 51 / 15%);
+}
+
+.group-score b {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6b8a77, #c99755);
+}
+
+.group-mood {
+  margin-top: 1rem;
+  border: 1px solid rgb(75 107 88 / 28%);
+  border-radius: 0.75rem;
+  padding: 0.8rem;
+  background: rgb(227 235 211 / 28%);
+}
+
+.group-mood span {
+  color: #567060;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.group-mood h3,
+.group-insight-list h3 {
+  margin: 0.25rem 0;
+}
+
+.group-mood p,
+.group-insight-list p {
+  margin: 0;
+  line-height: 1.42;
+}
+
+.group-trait-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0.9rem;
+  gap: 0.55rem;
+}
+
+.group-trait-list article {
+  display: grid;
+  border: 1px solid rgb(111 78 45 / 20%);
+  border-radius: 0.7rem;
+  padding: 0.7rem;
+  background: rgb(255 248 228 / 38%);
+}
+
+.group-trait-list span,
+.group-trait-list small {
+  color: #725b49;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.7rem;
+}
+
+.group-trait-list small {
+  margin-top: 0.16rem;
+  opacity: 0.75;
+}
+
+.group-insight-list {
+  display: grid;
+  margin-top: 0.85rem;
+  gap: 0.6rem;
+}
+
+.group-insight-list article {
+  border-left: 3px solid #78917c;
+  border-radius: 0.15rem 0.65rem 0.65rem 0.15rem;
+  padding: 0.55rem 0.7rem;
+  background: rgb(255 248 228 / 34%);
+}
+
+.group-tensions .group-insight-list article {
+  border-left-color: #a86f4a;
+}
+
+.group-recommendations {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.7fr) 1.5fr;
+  margin-top: 0.8rem;
+  border-radius: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+  gap: 1rem;
+}
+
+.group-recommendations ol {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.group-recommendations li {
+  padding-left: 0.25rem;
+  line-height: 1.45;
+}
+
+.group-recommendations li + li {
+  margin-top: 0.4rem;
+}
+
+.group-footer {
+  padding: 0.85rem 0.3rem 0;
+  color: rgb(244 232 205 / 72%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.group-empty,
+.group-notice {
+  margin-top: 0.8rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.group-empty > span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #8a593a;
+  font-size: 2rem;
+}
+
+.group-empty p {
+  margin: 0.5rem auto 0;
+  max-width: 35rem;
+}
+
+.group-notice.is-error {
+  color: #743f35;
+}
+
+@media (max-width: 760px) {
+  .group-header,
+  .group-recommendations {
+    grid-template-columns: 1fr;
+  }
+
+  .group-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .group-grid,
+  .group-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .group-stats p {
+    border-top: 1px solid rgb(102 72 42 / 18%);
+    padding-top: 0.55rem;
+  }
+}

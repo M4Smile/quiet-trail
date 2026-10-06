@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "backgrounds": [
+    {"id": "forest_path", "description": "светлая тропа в сказочном лесу"},
+    {"id": "quiet_bay", "description": "тихая бухта с деревянным причалом"},
+    {"id": "village_room", "description": "уютная деревенская комната"},
+    {"id": "sunny_clearing", "description": "просторная солнечная поляна"}
+  ],
+  "characters": [
+    {"id": "traveler", "name": "Путешественник", "description": "дружелюбный путник с котомкой"},
+    {"id": "fisher", "name": "Рыбак", "description": "спокойный рыбак у воды"},
+    {"id": "blacksmith", "name": "Кузнец", "description": "добрый деревенский мастер"},
+    {"id": "mushroom_picker", "name": "Грибник", "description": "внимательный лесной проводник"},
+    {"id": "saxophonist", "name": "Музыкант", "description": "весёлый странник с саксофоном"}
+  ]
+}

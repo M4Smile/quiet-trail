@@ -1,0 +1,383 @@
+.game-scene.is-sculpting .traveler {
+  display: none;
+}
+
+.sculpture-figure {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sculpture-figure.is-editing {
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.sculpture-figure.is-finished {
+  z-index: 2;
+}
+
+.sculpture-canvas {
+  position: absolute;
+  inset: 0;
+  transform: translate(24%, 18%) scale(0.5);
+  transform-origin: center;
+}
+
+.sculpture-figure.is-editing .sculpture-canvas {
+  transform: none;
+}
+
+.sculpture-figure.is-finished .sculpture-canvas {
+  transform: translate(24%, 24%) scale(0.38);
+}
+
+.sculpture-part {
+  position: absolute;
+  z-index: var(--part-z);
+  top: var(--part-y);
+  left: var(--part-x);
+  display: block;
+  width: var(--part-size);
+  aspect-ratio: 1;
+  overflow: visible;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(var(--part-rotate));
+  transform-origin: center;
+}
+
+.sculpture-part-art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: scaleX(var(--part-flip));
+}
+
+.sculpture-part-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0.28rem 0.22rem rgb(35 25 17 / 24%));
+  pointer-events: none;
+  user-select: none;
+}
+
+.sculpture-part-hitbox {
+  position: absolute;
+  z-index: 10;
+  top: var(--zone-top);
+  left: var(--zone-left);
+  width: var(--zone-width);
+  height: var(--zone-height);
+  cursor: grab;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.sculpture-part-hitbox:active {
+  cursor: grabbing;
+}
+
+.sculpture-figure.is-editing .sculpture-part.is-selected .sculpture-part-hitbox::before {
+  position: absolute;
+  z-index: 12;
+  inset: -0.18rem;
+  border: 2px dashed rgb(255 239 199 / 92%);
+  border-radius: 0.55rem;
+  content: '';
+  filter: drop-shadow(0 0 0.22rem rgb(55 39 29 / 85%));
+  pointer-events: none;
+}
+
+.sculpt-transform-handle {
+  position: absolute;
+  z-index: 14;
+  display: grid;
+  width: clamp(1.45rem, 5vw, 1.85rem);
+  aspect-ratio: 1;
+  border: 2px solid #fff0ca;
+  border-radius: 50%;
+  padding: 0;
+  place-items: center;
+  color: #fff8e8;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(0.9rem, 3vw, 1.15rem);
+  line-height: 1;
+  background: #624a39;
+  box-shadow: 0 0.22rem 0.4rem rgb(31 22 17 / 36%);
+  cursor: grab;
+  touch-action: none;
+}
+
+.sculpt-transform-handle.is-rotate {
+  top: -1.55rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sculpt-transform-handle.is-resize {
+  right: -0.75rem;
+  bottom: -0.75rem;
+}
+
+.sculpt-deck {
+  width: min(60svh, 100%);
+  min-width: 0;
+  max-width: 100%;
+  margin: 0.48rem auto 0;
+  overflow: hidden;
+  border: 1px solid rgb(64 50 37 / 24%);
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(rgb(255 247 228 / 90%), rgb(226 199 151 / 94%)),
+    url('/game/card-paper.webp') center / cover;
+  box-shadow: 0 0.42rem 0.9rem rgb(23 25 21 / 22%);
+}
+
+.sculpt-drawer-bar {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 1fr) auto auto;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.3rem 0.38rem 0.3rem 0.65rem;
+}
+
+.sculpt-drawer-toggle {
+  display: flex;
+  min-width: 0;
+  min-height: 2rem;
+  border: 0;
+  padding: 0;
+  align-items: center;
+  gap: 0.46rem;
+  color: #47362a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: left;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.sculpt-drawer-grip {
+  width: 1.8rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: rgb(91 65 43 / 42%);
+}
+
+.sculpt-drawer-chevron {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.sculpt-layer-actions {
+  display: flex;
+  gap: 0.26rem;
+}
+
+.sculpt-layer-actions button {
+  display: grid;
+  width: 2.05rem;
+  min-width: 2.05rem;
+  aspect-ratio: 1;
+  border: 1px solid rgb(82 59 40 / 34%);
+  border-radius: 0.55rem;
+  padding: 0;
+  place-items: center;
+  color: #493629;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  background: rgb(255 245 220 / 76%);
+  box-shadow: 0 0.14rem 0.3rem rgb(54 36 23 / 12%);
+  cursor: pointer;
+}
+
+.sculpt-layer-actions button.is-delete {
+  color: #fff5e8;
+  background: #865142;
+}
+
+.sculpt-layer-actions button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.sculpt-finish-button {
+  min-width: 5.8rem;
+  min-height: 2.1rem;
+  border: 1px solid rgb(82 59 40 / 34%);
+  border-radius: 0.62rem;
+  padding: 0.3rem 0.62rem;
+  color: #423226;
+  font-weight: 700;
+  background: rgb(255 245 220 / 78%);
+  box-shadow: 0 0.16rem 0.35rem rgb(54 36 23 / 13%);
+  cursor: pointer;
+}
+
+.sculpt-finish-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.sculpt-parts-tray {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.48rem, 1.4vw, 0.72rem);
+  width: 100%;
+  min-width: 0;
+  max-height: clamp(11rem, 29svh, 15.5rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: clamp(0.48rem, 1.3vw, 0.72rem);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.sculpt-parts-tray::-webkit-scrollbar {
+  display: none;
+}
+
+.sculpt-option {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 0.92;
+  overflow: hidden;
+  border: 2px solid #765b39;
+  border-radius: clamp(0.55rem, 1.6vw, 0.8rem);
+  padding: clamp(0.32rem, 1vw, 0.62rem);
+  place-items: center;
+  background-color: #dcc08e;
+  background-image:
+    linear-gradient(145deg, rgb(255 245 219 / 20%), rgb(90 54 22 / 8%)),
+    url('/game/card-paper.webp');
+  background-position: center;
+  background-size: cover;
+  box-shadow:
+    0 0.35rem 0.72rem rgb(9 19 20 / 22%),
+    inset 0 0 0 3px rgb(255 242 211 / 48%);
+  cursor: grab;
+  touch-action: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.sculpt-option::after {
+  position: absolute;
+  inset: 0.32rem;
+  border: 1px solid rgb(91 66 38 / 34%);
+  border-radius: calc(clamp(0.55rem, 1.6vw, 0.8rem) - 0.18rem);
+  content: '';
+  pointer-events: none;
+}
+
+.sculpt-option:active {
+  cursor: grabbing;
+}
+
+.sculpt-option:hover,
+.sculpt-option:focus-visible {
+  transform: translateY(-0.12rem);
+  box-shadow:
+    0 0.55rem 0.9rem rgb(9 19 20 / 28%),
+    inset 0 0 0 3px rgb(255 242 211 / 58%);
+}
+
+.sculpt-option img {
+  display: block;
+  width: 94%;
+  height: 94%;
+  margin: auto;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 0.16rem 0.15rem rgb(42 29 20 / 18%));
+  user-select: none;
+  pointer-events: none;
+}
+
+.sculpt-drag-preview img {
+  display: block;
+  width: 94%;
+  height: 94%;
+  margin: auto;
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+.sculpt-drag-preview {
+  position: fixed;
+  z-index: 100;
+  width: 6rem;
+  aspect-ratio: 1;
+  padding: 0.28rem;
+  border-radius: 0.8rem;
+  background: rgb(255 246 226 / 74%);
+  filter: drop-shadow(0 0.55rem 0.6rem rgb(24 20 17 / 34%));
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 620px) {
+  .sculpt-deck {
+    width: min(100%, 31rem);
+  }
+
+
+  .sculpt-drawer-bar {
+    grid-template-columns: minmax(3.4rem, 1fr) auto auto;
+  }
+
+  .sculpt-drawer-toggle > span:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .sculpt-drawer-bar {
+    gap: 0.28rem;
+    padding-left: 0.42rem;
+  }
+
+  .sculpt-drawer-grip {
+    width: 1.35rem;
+  }
+
+  .sculpt-layer-actions button {
+    width: 1.85rem;
+    min-width: 1.85rem;
+  }
+
+  .sculpt-finish-button {
+    min-width: 5.2rem;
+    padding-inline: 0.45rem;
+  }
+
+  .sculpt-parts-tray {
+    gap: 0.36rem;
+    padding: 0.42rem;
+  }
+
+  .sculpt-option {
+    padding: 0.24rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sculpture-figure,
+  .sculpt-option {
+    animation: none;
+    transition: none;
+  }
+}
